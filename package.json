@@ -1,0 +1,19 @@
+{
+  "name": "ptoyect-01",
+  "version": "1.0.0",
+  "description": "Proyecto ad-ramos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alkard000/Ad-ramos.git"
+  },
+  "author": "Ivan Aburto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alkard000/Ad-ramos/issues"
+  },
+  "homepage": "https://github.com/alkard000/Ad-ramos#readme"
+}
