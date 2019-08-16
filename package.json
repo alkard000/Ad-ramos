@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/alkard000/Ad-ramos/issues"
   },
-  "homepage": "https://github.com/alkard000/Ad-ramos#readme"
+  "homepage": "https://github.com/alkard000/Ad-ramos#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
