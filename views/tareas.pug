@@ -2,6 +2,18 @@ extends layout
 
 block contenido
     .contenido-principal
-        h1 #{nombrePagina}
+        h1 #{nombrePagina} - #{proyecto.nombre}
+
+        // TODO -Formularios del CRUD aqui
+        
+        // TODO -Listado de pendientes
+
+        // Acciones que se pueden hacer
+
+        //- pre= vardump(proyecto)
+
+        .contenido-acciones
+            a(href = `/proyecto/editar/${proyecto.id}` class = "boton") Editar Proyecto
+            button#editar-proyecto(type = "button" class = "boton eliminar") Eliminar Proyecto
 
 

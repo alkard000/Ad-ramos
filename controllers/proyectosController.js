@@ -9,7 +9,7 @@ exports.proyectosHome = async (req, res) => {
 }
 exports.formularioRamo = async (req, res) => {
     const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
-    res.render('nuevoRamo', {
+    res.render('nuevoramo', {
         nombrePagina : 'Nuevo Ramo',
         proyectos
     });
@@ -62,4 +62,13 @@ exports.proyectoPorUrl = async ( req, res, next ) => {
         proyectos
     })
     
+}
+
+exports.formularioEditar = async (req, res) => {
+    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    //renderizado al view
+    res.render( 'nuevoramo', {
+        nombrePagina : 'Editar Ramo',
+        proyectos
+    })
 }

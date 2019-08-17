@@ -14,7 +14,8 @@ module.exports = function(){
     );
     //listar ramos
     router.get( '/proyectos/:url', proyectosController.proyectoPorUrl );
-
+    //Update ramos
+    router.get( '/proyecto/editar/:id', proyectosController.formularioEditar );
     return router;
 }
 
