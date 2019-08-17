@@ -20,11 +20,11 @@ html(lang="en")
                 .panel.lista-proyectos
                     h2 Ramos
                     ul#proyectos.proyectos
-                        li
-                            a(href = "#") Calculo I
-                        li
-                            a(href = "#") Calculo II
-                        li
-                            a(href = "#") Calculo III
+                        if(proyectos.length)
+                            each proyecto in proyectos
+                                li 
+                                    a(href = "#")= proyecto.nombre
 
             block contenido
+
+            pre= vardump(proyectos)

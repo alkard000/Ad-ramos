@@ -2,6 +2,8 @@ const express = require('express');
 const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
+//helpers con funciones
+const helpers = require('./helpers');
 
 //creando conexion a la db
 const db = require('./config/db');
@@ -22,6 +24,11 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 //Anadir carpetas de vistas
 app.set('views', path.join(__dirname, './views'));
+//insertar un vardump a la aplicacion
+app.use((req, res, next) => {
+    res.locals.vardump = helpers.vardump;//crear variables  para consumir en cualquier lado
+    next();
+})
 //Habilitar bodyParser
 app.use(bodyParser.urlencoded({extended : true}));
 

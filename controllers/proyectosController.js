@@ -1,8 +1,10 @@
 const Proyectos = require('../models/Poyectos');
 
-exports.proyectosHome = (req, res) => {
+exports.proyectosHome = async (req, res) => {
+    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
     res.render('Index', {
-        nombrePagina : 'Ramos'
+        nombrePagina : 'Ramos',
+        proyectos
     });
 }
 exports.formularioRamo = (req, res) => {
