@@ -27,5 +27,8 @@ exports.nuevoRamo = (req, res) => {
             nombrePagina : 'Nuevo Ramo',
             errores
         });
+    } else {
+        //Sin errores
+        //Insertar en la BD
     }
 }

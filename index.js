@@ -3,13 +3,21 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-// Crear una aplicacion de express
+//creando conexion a la db
+const db = require('./config/db');
 
+//importando el modelo
+require('./models/Poyectos');
+
+db.sync()
+    .then(() => console.log('Conectado al Servidor'))
+    .catch(error => console.log(error));
+
+// Crear una aplicacion de express
 const app = express();
 
 //cargar archivos estaticos
 app.use(express.static('public'));
-
 //Habilitando pug
 app.set('view engine', 'pug');
 //Anadir carpetas de vistas

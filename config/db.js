@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // Option 1: Passing parameters separately
-const sequelize = new Sequelize('adbranchnode', 'root', 'Supermono94', {
+const db = new Sequelize('adbranchnode', 'root', 'Supermono94', {
   host: 'localhost',
   dialect:  'mysql',
   port : '3306',
@@ -17,5 +17,7 @@ const sequelize = new Sequelize('adbranchnode', 'root', 'Supermono94', {
     idle: 10000
   },
 });
+
+module.exports = db;
 
 // Option 2: Passing a connection URI
