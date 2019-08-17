@@ -10,7 +10,11 @@ module.exports = function(){
     router.get('/nuevo-ramo', proyectosController.formularioRamo)
     router.post('/nuevo-ramo', 
         body('nombre').not().isEmpty().trim().escape(),       //SANITIZACION DEL FORMULARIO
-        proyectosController.nuevoRamo)
+        proyectosController.nuevoRamo
+    );
+    //listar ramos
+    router.get( '/proyectos/:url', proyectosController.proyectoPorUrl );
+
     return router;
 }
 
