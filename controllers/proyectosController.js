@@ -10,7 +10,7 @@ exports.formularioRamo = (req, res) => {
         nombrePagina : 'Nuevo Ramo'
     });
 }
-exports.nuevoRamo = (req, res) => {
+exports.nuevoRamo = async(req, res) => {
     //enviar a la consola
     // console.log(req.body);
     //validar algo en el formulario
@@ -32,8 +32,9 @@ exports.nuevoRamo = (req, res) => {
     } else {
         //Sin errores
         //Insertar en la BD
-        Proyectos.create({ nombre })
-        .then(() => console.log(' Insertado Correctamente '))
-        .catch( error => console.log(error) );
+        //Usando await para el sync
+        const proyecto = await Proyectos.create({ nombre });
+        res.redirect('/');
+
     }
 }
