@@ -46,13 +46,14 @@ exports.nuevoRamo = async(req, res) => {
 }
 //Generando la pargina de cada proyecto
 exports.proyectoPorUrl = async ( req, res, next ) => {
-    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
-    const proyecto = await Proyectos.findOne({
+    const proyectosPromise =  Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const proyectoPromise =  Proyectos.findOne({
         where : {
             url : req.params.url
         }
     });
 
+    const [proyectos, proyecto] = await Promise.all([ proyectosPromise, proyectoPromise ]);
     if(!proyecto) return next();
 
     //Renderizacion de las tareas
@@ -65,10 +66,18 @@ exports.proyectoPorUrl = async ( req, res, next ) => {
 }
 
 exports.formularioEditar = async (req, res) => {
-    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const proyectosPromise =  Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const proyectoPromise =  Proyectos.findOne({
+        where : {
+            id : req.params.id
+        }
+    });
+
+    const [proyectos, proyecto] = await Promise.all([ proyectosPromise, proyectoPromise ]);
     //renderizado al view
     res.render( 'nuevoramo', {
         nombrePagina : 'Editar Ramo',
-        proyectos
+        proyectos,
+        proyecto
     })
 }
