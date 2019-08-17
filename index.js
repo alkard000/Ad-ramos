@@ -6,6 +6,9 @@ const path = require('path');
 
 const app = express();
 
+//cargar archivos estaticos
+app.use(express.static('public'));
+
 //Habilitando pug
 app.set('view engine', 'pug');
 //Anadir carpetas de vistas
