@@ -29,6 +29,11 @@ app.use((req, res, next) => {
     res.locals.vardump = helpers.vardump;//crear variables  para consumir en cualquier lado
     next();
 })
+app.use((req, res, next) => {
+    const fecha = new Date();
+    res.locals.year = fecha.getFullYear();
+    next();
+})
 //Habilitar bodyParser
 app.use(bodyParser.urlencoded({extended : true}));
 
