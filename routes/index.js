@@ -16,6 +16,10 @@ module.exports = function(){
     router.get( '/proyectos/:url', proyectosController.proyectoPorUrl );
     //Update ramos
     router.get( '/proyecto/editar/:id', proyectosController.formularioEditar );
+    router.post('/nuevo-ramo/:id', 
+    body('nombre').not().isEmpty().trim().escape(),       //SANITIZACION DEL FORMULARIO
+    proyectosController.actualizarRamo
+    );
     return router;
 }
 

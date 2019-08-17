@@ -1,16 +1,16 @@
 extends layout
 
+include mixins/crearramo
+
 block contenido
     .contenido-principal
         h1 #{nombrePagina}
 
+        //-pre= vardump(proyecto)
+
         if errores
             each error in errores 
                 .alerta = error.texto
+        +crearramo(proyecto)
 
-        form.agregar-proyecto(action = "/nuevo-ramo" method = "POST")
-            .campo
-                label(for="nombre") Nombre Ramo:
-                input(type="text" id = "nombre" name = "nombre" placeholder = "Indica el nombre")
-            .campo.enviar
-                input(type="submit" value = "Agregar" class = "boton")
+
