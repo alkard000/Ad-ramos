@@ -9,5 +9,23 @@ exports.formularioRamo = (req, res) => {
     });
 }
 exports.nuevoRamo = (req, res) => {
-    res.send('Enviaste el Formulario')
+    //enviar a la consola
+    // console.log(req.body);
+    //validar algo en el formulario
+    const { nombre } = req.body;
+
+    let errores = [];
+
+    if(!nombre){
+        errores.push({
+            'texto' : 'Agregar un Nombre Por Favor'
+        })
+    }
+    //si hay errores
+    if(errores.length > 0){
+        res.render('nuevoramo', {
+            nombrePagina : 'Nuevo Ramo',
+            errores
+        });
+    }
 }
