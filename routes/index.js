@@ -20,6 +20,10 @@ module.exports = function(){
     body('nombre').not().isEmpty().trim().escape(),       //SANITIZACION DEL FORMULARIO
     proyectosController.actualizarRamo
     );
+
+    //Eliminar una asignatura
+    router.delete('/proyectos/:url', proyectosController.eliminarProyecto);
+
     return router;
 }
 

@@ -114,3 +114,20 @@ exports.actualizarRamo = async(req, res) => {
 
     }
 }
+
+exports.eliminarProyecto = async (req, res, next) => {
+    //console.log(req);
+    const {urlProyecto} = req.query;
+    //Eliminar registro con DESTROY
+    const resultado = await Proyectos.destroy({
+        where : {
+            url : urlProyecto
+        }
+    });
+
+    if(!resultado){
+        return next();//SE LANZA AL SIGUIENTE MIDDLEWARE
+    }
+
+    res.status(200).send('Asignatura Eliminada correctamente');
+}

@@ -10,10 +10,10 @@ block contenido
 
         // Acciones que se pueden hacer
 
-        //- pre= vardump(proyecto)
+        pre= vardump(proyecto)
 
         .contenido-acciones
             a(href = `/proyecto/editar/${proyecto.id}` class = "boton") Editar Proyecto
-            button#editar-proyecto(type = "button" class = "boton eliminar") Eliminar Proyecto
+            button#eliminar-proyecto(data-proyecto-url = proyecto.url type = "button" class = "boton eliminar") Eliminar Proyecto
 
 
