@@ -26,14 +26,18 @@ block contenido
                 else
                     p no hay tareas en esta asignatura
 
-
+        //Avance del proyecto
+        .avance
+            h2 Avance de la Asignatura
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
 
         // Acciones que se pueden hacer
 
         //-pre= vardump(tareas)
 
-        .contenido-acciones
-            a(href = `/proyecto/editar/${proyecto.id}` class = "boton") Editar Proyecto
+        .contenedor-acciones
+            a(href = `/proyecto/editar/${proyecto.id}` type = "button" class = "boton") Editar Proyecto
             button#eliminar-proyecto(data-proyecto-url = proyecto.url type = "button" class = "boton eliminar") Eliminar Proyecto
 
 
