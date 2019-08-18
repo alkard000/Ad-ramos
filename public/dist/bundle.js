@@ -426,7 +426,7 @@ eval("/*!\n* sweetalert2 v8.16.1\n* Released under the MIT License.\n*/\n(functi
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/proyectos */ \"./public/js/modules/proyectos.js\");\n\n\n//# sourceURL=webpack:///./public/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/proyectos */ \"./public/js/modules/proyectos.js\");\n/* harmony import */ var _modules_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tareas */ \"./public/js/modules/tareas.js\");\n\n\n\n//# sourceURL=webpack:///./public/js/app.js?");
 
 /***/ }),
 
@@ -439,6 +439,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.all.js\");\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);\n\n\nconst btnEliminar = document.querySelector('#eliminar-proyecto');\n\nif (btnEliminar) {\n  btnEliminar.addEventListener('click', e => {\n    const urlProyecto = e.target.dataset.proyectoUrl; //console.log(urlProyecto);\n\n    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({\n      title: 'Deseas Eliminar esta Asignatura?',\n      text: \"Si lo borras no volveras a recuperarlo\",\n      type: 'warning',\n      showCancelButton: true,\n      confirmButtonColor: '#3085d6',\n      cancelButtonColor: '#d33',\n      confirmButtonText: 'Si, borrar!',\n      cancelButtonText: 'Cancelar'\n    }).then(result => {\n      if (result.value) {\n        //enviar la peticion a AXIOS\n        const url = `${location.origin}/proyectos/${urlProyecto}`;\n        axios__WEBPACK_IMPORTED_MODULE_1___default.a.delete(url, {\n          params: {\n            urlProyecto\n          }\n        }).then(function (respuesta) {\n          console.log(respuesta);\n          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire('Asignatura Eliminada', respuesta.data, 'success');\n          setTimeout(() => {\n            window.location.href = '/';\n          }, 3000);\n        }).catch(() => {\n          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({\n            type: 'error',\n            title: 'Hubo un Error Inesperado',\n            text: 'No se puedo eliminaar La Asignatura'\n          });\n        });\n      }\n    });\n  });\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (btnEliminar);\n\n//# sourceURL=webpack:///./public/js/modules/proyectos.js?");
+
+/***/ }),
+
+/***/ "./public/js/modules/tareas.js":
+/*!*************************************!*\
+  !*** ./public/js/modules/tareas.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n\nconst tareas = document.querySelector('.listado-pendientes');\n\nif (tareas) {\n  tareas.addEventListener('click', e => {\n    if (e.target.classList.contains('fa-check-circle')) {\n      const icono = e.target;\n      const idTarea = icono.parentElement.parentElement.dataset.tarea; //request hacia el dir /tareas/:id\n\n      const url = `${location.origin}/tareas/${idTarea}`;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(url, {\n        idTarea\n      }).then(function (respuesta) {\n        if (respuesta.status === 200) {\n          icono.classList.toggle('completo');\n        }\n      });\n    }\n  });\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (tareas);\n\n//# sourceURL=webpack:///./public/js/modules/tareas.js?");
 
 /***/ })
 
