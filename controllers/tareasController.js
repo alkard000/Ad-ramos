@@ -1,7 +1,7 @@
 const Proyectos = require('../models/Poyectos');
 const Tareas = require('../models/Tareas');
 
-exports.agregarTarea = async (req, res) => {
+exports.agregarTarea = async (req, res, next) => {
     //Se obtiene la Asigantura
     const proyecto = await Proyectos.findOne({
         where : {
@@ -39,4 +39,21 @@ exports.cambiarEstadoTarea = async (req, res) => {
     if(!resultado) return next();
 
     res.status(200).send('Actulizado');
+}
+
+exports.eliminarTarea = async (req, res) => {
+
+    const { id } = req.params;
+
+    // Delete Tarea
+
+    const resultado = await Tareas.destroy({
+        where : {
+            id
+        }
+    });
+
+    if(!resultado) return next();
+
+    res.status(200).send('Tarea Eliminada');
 }
