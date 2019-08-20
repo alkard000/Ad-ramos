@@ -38,6 +38,7 @@ module.exports = function(){
 
     //Crear Cuentas de Alumnos
     router.get('/crear-cuenta', usuariosController.formCrearCuenta);
+    router.post('/crear-cuenta', usuariosController.crearCuenta);
 
     return router;
 }
