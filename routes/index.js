@@ -5,6 +5,8 @@ const { body } = require('express-validator/check');
 //importar controlador
 const proyectosController = require('../controllers/proyectosController');
 const tareasController = require('../controllers/tareasController');
+const usuariosController = require('../controllers/usuariosController');
+
 module.exports = function(){
     //rutas para el home
     router.get('/', proyectosController.proyectosHome);
@@ -33,6 +35,9 @@ module.exports = function(){
 
     //Delete Tarea
     router.delete('/tareas/:id', tareasController.eliminarTarea);
+
+    //Crear Cuentas de Alumnos
+    router.get('/crear-cuenta', usuariosController.formCrearCuenta);
 
     return router;
 }
