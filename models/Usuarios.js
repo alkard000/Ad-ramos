@@ -1,6 +1,7 @@
 const Sequelize = require( 'sequelize' );
 const db = require( '../config/db' );
 const Proyectos = require( '../models/Poyectos' );
+const bcrypt = require( 'bcrypt-nodejs' );
 
 const Usuarios = db.define( 'usuarios', {
     id : {
@@ -16,6 +17,12 @@ const Usuarios = db.define( 'usuarios', {
     password : {
         type : Sequelize.STRING(60),// ----->> String recomendado por el Hasheo
         allowNull : false
+    }
+}, {
+    hooks : {
+        beforeCreate(usuario) {
+            usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10)); // -------->> HASHEO DE PASSWORD en 10
+        }
     }
 });
 
