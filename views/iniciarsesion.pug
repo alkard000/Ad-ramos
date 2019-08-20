@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+            h1 Inicia Sesión en AdBranch
+
+            form#formulario.caja.caja-login( method = "POST" action = "/iniciar-sesion" )
+                .campo
+                    label(for="email") E-mail: 
+                    input(type = "text" name = "email" placeholder = "Ingresa tu Email" value= email)
+                .campo
+                    label(for="password") Contraseña: 
+                    input(type = "password" name = "password" placeholder = "Ingresa tu Password" value= password)
+                .campo.enviar
+                    input.boton(type = "submit" value = "Iniciar Sesión")
+                .campo
+                    a(href = "/crear-cuenta") Crea un Cuenta Gratis en AdBranch
+

@@ -2,6 +2,11 @@ const express = require('express');
 const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
+//const expressValidator = require( 'express-validator' );
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
+const flash = require( 'connect-flash' );
 //helpers con funciones
 const helpers = require('./helpers');
 
@@ -19,16 +24,29 @@ db.sync()
 
 // Crear una aplicacion de express
 const app = express();
-
 //cargar archivos estaticos
 app.use(express.static('public'));
 //Habilitando pug
 app.set('view engine', 'pug');
+//Habilitar bodyParser
+app.use(bodyParser.urlencoded({extended : true}));
+//Agregar Exrpess validator a la aplicacion
+//app.use(expressValidator());
 //Anadir carpetas de vistas
 app.set('views', path.join(__dirname, './views'));
+//incluir flash
+app.use(flash());
+//incluir express session -------->> NAVEGAR POR PAGINA SIN NECESIDAD DE VOLVER A CARGAR
+app.use(session({
+    secret : 'Confidencial',
+    resave : false,
+    saveUninitialized : false,
+
+}));
 //insertar un vardump a la aplicacion
 app.use((req, res, next) => {
     res.locals.vardump = helpers.vardump;//crear variables  para consumir en cualquier lado
+    res.locals.mensajes = req.flash();
     next();
 })
 app.use((req, res, next) => {
@@ -36,8 +54,6 @@ app.use((req, res, next) => {
     res.locals.year = fecha.getFullYear();
     next();
 })
-//Habilitar bodyParser
-app.use(bodyParser.urlencoded({extended : true}));
 
 
 app.use('/', routes() );

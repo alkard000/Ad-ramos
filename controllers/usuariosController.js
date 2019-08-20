@@ -5,16 +5,29 @@ exports.formCrearCuenta = (req, res) => {
         nombrePagina : 'Crear Cuenta AdBranch'
     })
 }
-exports.crearCuenta = (req, res) => {
+exports.formIniciarSesion = (req, res) => {
+    res.render('iniciarsesion', {
+        nombrePagina : 'Iniciar Sesión en AdBranch'
+    })
+}
+exports.crearCuenta = async (req, res) => {
     //Leer datos
     const { email, password } = req.body;
-    //Crear Usuario
-    Usuarios.create({
-        email,
-        password
-    })
 
-    .then(() => {
+    try {
+        //Crear 
+        await Usuarios.create({
+            email,
+            password
+        });
         res.redirect( '/inciar-sesion' );
-    })
+    } catch (error) {
+        req.flash( 'error', error.errors.map( error => error.message ) );
+        res.render('crearcuenta', {
+            mensajes : req.flash(),
+            nombrePagina : 'Crear Cuenta AdBranch',
+            email,
+            password
+        })
+    }
 }

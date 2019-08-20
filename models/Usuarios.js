@@ -12,11 +12,27 @@ const Usuarios = db.define( 'usuarios', {
     email : {
         type : Sequelize.STRING(80),
         allowNull : false,
-
+        validate : {
+            isEmail : {
+                msg : 'Agrega un Correo Electronico Valido'
+            },
+            notEmpty : {
+                msg : 'El campo Email no debe ir Vacio'
+            }
+        },
+        unique : {
+            args : true,
+            msg : 'El Email ya esta Resitrado'
+        }
     },
     password : {
         type : Sequelize.STRING(60),// ----->> String recomendado por el Hasheo
-        allowNull : false
+        allowNull : false,
+        validate : {
+            notEmpty : {
+                msg : 'El campo Password no debe ir Vacio'
+            }
+        }
     }
 }, {
     hooks : {
