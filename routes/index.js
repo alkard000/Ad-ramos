@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 //importar express validator
-const { body } = require('express-validator/check');
+const { body } = require('express-validator');
 //importar controlador
 const proyectosController = require('../controllers/proyectosController');
 const tareasController = require('../controllers/tareasController');
 const usuariosController = require('../controllers/usuariosController');
+const authController = require('../controllers/authController');
 
 module.exports = function(){
     //rutas para el home
@@ -41,7 +42,8 @@ module.exports = function(){
     router.post('/crear-cuenta', usuariosController.crearCuenta);
 
     // Ruta del inicio de sesion
-    router.get('/iniciar-sesion', usuariosController.formIniciarSesion)
+    router.get('/iniciar-sesion', usuariosController.formIniciarSesion);
+    router.post('/iniciar-sesion', authController.autenticarUsuario);
 
     return router;
 }
