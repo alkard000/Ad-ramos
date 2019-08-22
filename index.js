@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const expressValidator = require( 'express-validator' );
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const passport = require('./config/passport');
 
 const flash = require( 'connect-flash' );
 //helpers con funciones
@@ -43,6 +44,9 @@ app.use(session({
     saveUninitialized : false,
 
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 //insertar un vardump a la aplicacion
 app.use((req, res, next) => {
     res.locals.vardump = helpers.vardump;//crear variables  para consumir en cualquier lado
