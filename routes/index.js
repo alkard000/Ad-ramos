@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //importar express validator
-const { body } = require('express-validator');
+const { body } = require('express-validator/check');
 //importar controlador
 const proyectosController = require('../controllers/proyectosController');
 const tareasController = require('../controllers/tareasController');

@@ -2,10 +2,10 @@ const express = require('express');
 const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
-const expressValidator = require( 'express-validator' );
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const flash = require( 'connect-flash' );
 const passport = require('./config/passport');
 //helpers con funciones
 const helpers = require('./helpers');
@@ -29,7 +29,6 @@ app.use(express.static('public'));
 //Habilitando pug
 app.set('view engine', 'pug');
 //Habilitar bodyParser
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 //Agregar Exrpess validator a la aplicacion
 app.use(expressValidator());
@@ -45,7 +44,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
 //incluir flash
 app.use(flash());
 //insertar un vardump a la aplicacion

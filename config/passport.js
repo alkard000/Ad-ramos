@@ -1,5 +1,5 @@
-const passport = require( 'passport' ), 
-      LocalStrategy = require( 'passport-local' ).Strategy;
+const passport = require( 'passport' ) 
+const LocalStrategy = require( 'passport-local' ).Strategy;
 
 //Referenciar modelo de autenticacion
 const Usuarios = require( '../models/Usuarios' );
@@ -15,7 +15,7 @@ passport.use(
             try {
                 const usuario = await Usuarios.findOne({
                     where : {
-                        email : email
+                        email
                     }
                 });
                 //El usuario coincide, pero el PW es incorrecto
