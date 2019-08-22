@@ -6,8 +6,10 @@ exports.formCrearCuenta = (req, res) => {
     })
 }
 exports.formIniciarSesion = (req, res) => {
+    const { error } = res.locals.mensajes;
     res.render('iniciarsesion', {
-        nombrePagina : 'Iniciar Sesión en AdBranch'
+        nombrePagina : 'Iniciar Sesión en AdBranch',
+        error
     })
 }
 exports.crearCuenta = async (req, res) => {
