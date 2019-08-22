@@ -2,21 +2,37 @@ const Proyectos = require('../models/Poyectos');
 const Tareas = require('../models/Tareas');
 
 exports.proyectosHome = async (req, res) => {
-    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    //console.log(res.locals.usuario);
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where : {
+            usuarioId
+        }
+    });//controlador interactura con el modelo para pasarlo a la vista
     res.render('Index', {
         nombrePagina : 'Ramos ' + res.locals.year,
         proyectos
     });
 }
 exports.formularioRamo = async (req, res) => {
-    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where : {
+            usuarioId
+        }
+    });//controlador interactura con el modelo para pasarlo a la vista
     res.render('nuevoramo', {
         nombrePagina : 'Nuevo Ramo',
         proyectos
     });
 }
 exports.nuevoRamo = async(req, res) => {
-    const proyectos = await Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where : {
+            usuarioId
+        }
+    });//controlador interactura con el modelo para pasarlo a la vista
     //enviar a la consola
     // console.log(req.body);
     //validar algo en el formulario
@@ -40,17 +56,24 @@ exports.nuevoRamo = async(req, res) => {
         //Sin errores
         //Insertar en la BD
         //Usando await para el sync
-        await Proyectos.create({ nombre });
+        const usuarioId = res.locals.usuario.id;
+        await Proyectos.create({ nombre, usuarioId });
         res.redirect('/');
 
     }
 }
 //Generando la pargina de cada proyecto
 exports.proyectoPorUrl = async ( req, res, next ) => {
-    const proyectosPromise =  Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const usuarioId = res.locals.usuario.id;
+    const proyectosPromise = Proyectos.findAll({
+        where : {
+            usuarioId
+        }
+    });//controlador interactura con el modelo para pasarlo a la vista
     const proyectoPromise =  Proyectos.findOne({
         where : {
-            url : req.params.url
+            url : req.params.url,
+            usuarioId
         }
     });
 
@@ -80,10 +103,16 @@ exports.proyectoPorUrl = async ( req, res, next ) => {
 }
 
 exports.formularioEditar = async (req, res) => {
-    const proyectosPromise =  Proyectos.findAll();//controlador interactura con el modelo para pasarlo a la vista
+    const usuarioId = res.locals.usuario.id;
+    const proyectosPromise = Proyectos.findAll({
+        where : {
+            usuarioId
+        }
+    });//controlador interactura con el modelo para pasarlo a la vista
     const proyectoPromise =  Proyectos.findOne({
         where : {
-            id : req.params.id
+            id : req.params.id,
+            usuarioId
         }
     });
 
