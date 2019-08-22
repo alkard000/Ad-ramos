@@ -35,7 +35,7 @@ app.use(expressValidator());
 //Anadir carpetas de vistas
 app.set('views', path.join(__dirname, './views'));
 //INCLUIR COOKIES
-app.use(cookieParser());
+//app.use(cookieParser());
 //incluir express session -------->> NAVEGAR POR PAGINA SIN NECESIDAD DE VOLVER A CARGAR
 app.use(session({
     secret : 'keyboard cat',

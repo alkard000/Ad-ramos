@@ -1,4 +1,4 @@
-const passport = require( 'passport' ) 
+const passport = require( 'passport' ) ;
 const LocalStrategy = require( 'passport-local' ).Strategy;
 
 //Referenciar modelo de autenticacion
@@ -42,7 +42,7 @@ passport.serializeUser((usuario, callback) => {
 });
 // Deserializar un usuario determinado
 passport.deserializeUser((usuario, callback) => {
-    callback( null, usuario )
+    callback( null, usuario );
 });
 // Export
 module.export = passport;
