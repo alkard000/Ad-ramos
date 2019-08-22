@@ -42,6 +42,6 @@ const Usuarios = db.define( 'usuarios', {
     }
 });
 
-Usuarios.hasMany(Proyectos);
+//Usuarios.hasMany(Proyectos);
 
 module.exports = Usuarios;
