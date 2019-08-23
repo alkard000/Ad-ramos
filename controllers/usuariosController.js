@@ -22,7 +22,7 @@ exports.crearCuenta = async (req, res) => {
             email,
             password
         });
-        res.redirect( '/inciar-sesion' );
+        res.redirect( '/iniciar-sesion' );
     } catch (error) {
         req.flash( 'error', error.errors.map( error => error.message ) );
         res.render('crearcuenta', {
@@ -32,4 +32,9 @@ exports.crearCuenta = async (req, res) => {
             password
         })
     }
+}
+exports.formRestablecerPassword = (req, res) =>{
+    res.render('restablecer', {
+        nombrePagina : 'Restablece tu Contraseña'
+    })
 }
