@@ -61,7 +61,8 @@ module.exports = function(){
         usuariosController.formCrearCuenta);
     router.post('/crear-cuenta', 
         usuariosController.crearCuenta);
-
+    router.get('/confirmar/:correo', 
+        usuariosController.confirmarCuenta);
     // Ruta del inicio de sesion
     router.get('/iniciar-sesion', 
         usuariosController.formIniciarSesion);
@@ -78,7 +79,8 @@ module.exports = function(){
     router.post('/restablecer',
         authController.enviarToken);
     router.get('/restablecer/:token', 
-        authController.actualizarPassword);
+        authController.validarToken);
+    router.post('/restablecer/:token', authController.actualizarPassword);
 
     return router;
 }

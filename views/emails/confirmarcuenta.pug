@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        style
+            include ./email.css
+
+    body
+        h2 Confirma tu Cuenta AdBranch
+        p Ya estás casi listo, solo tienes que presionar el siguiente enlace para completar tu registro
+        a(href = `${confirmarURL}`) Confirmar Cuenta
+        p si no puedes ver este enlace, visita #{confirmarURL}
+        p Si no solicitaste esta solicitud, ignora este email
