@@ -7,6 +7,12 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
 
+//Extraer valiables de dotenv
+require('dotenv').config({
+    path : 'variable.env'
+})
+
+//Instalas Flash
 const flash = require( 'connect-flash' );
 //helpers con funciones
 const helpers = require('./helpers');
@@ -65,6 +71,12 @@ app.use((req, res, next) => {
 
 app.use('/', routes() );
 
-app.listen(5000);
+//SERVER Y PORT
+const host = process.env.HOST || 'O.O.O.O';
+const port = process.env.PORT || 5000;
+
+app.listen(port, host, () => {
+    console.log('El Servidor esta Funcionando');
+});
 
 
